@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#47a86c",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "小鹿影视",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#686868",
+    "selectedColor": "#47a86c",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "dist/images/popular_icon.png",
+        "selectedIconPath": "dist/images/popular_active_icon.png",
+        "text": "热映"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "dist/images/coming_icon.png",
+        "selectedIconPath": "dist/images/coming_active_icon.png",
+        "text": "待映"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "dist/images/top_icon.png",
+        "selectedIconPath": "dist/images/top_active_icon.png",
+        "text": "口碑"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "dist/images/my_icon.png",
+        "selectedIconPath": "dist/images/my_active_icon.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  }
+}
