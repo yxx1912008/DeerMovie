@@ -4,9 +4,6 @@ var config = require('common/script/config');
 //app.js
 App({
   onLaunch: function () {
-
-    //获取用户信息
-    this.getUserInfo();
     // 登录
     wx.login({
       success: res => {
