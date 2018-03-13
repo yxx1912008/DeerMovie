@@ -48,6 +48,8 @@ Page({
     // })
   },
   onLoad: function () {
+    //1.显示导航条加载动画
+    wx.showNavigationBarLoading();
     //判断，如果不为空
     if (app.globalData.userInfo) {
       this.setData({
