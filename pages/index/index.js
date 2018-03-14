@@ -1,3 +1,6 @@
+//导入配置
+var config = require('../../common/script/config')
+
 //index.js
 //获取应用实例
 const app = getApp()
@@ -8,14 +11,10 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    //搜索的电影列表
-    earchMovies: [],
-    //每页包含几条数据
-    searchCount: 0,
-    //开始下标
-    startIndex: 0,
-    //电影信息
-    movieInfo: [],
+
+    //banner列表，读取配置文件
+    bannerList=config.bannerList
+
   },
   //事件处理函数
   bindViewTap: function () {

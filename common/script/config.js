@@ -62,8 +62,5 @@ module.exports = {
     complete: ''
   },
   // 摇一摇欢迎图片
-  shakeWelcomeImg: url + '/images/shake_welcome.png'
-
-
-
+  shakeWelcomeImg: url + '/images/bg_img_movie/shake_welcome.png'
 }

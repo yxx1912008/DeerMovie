@@ -9,11 +9,11 @@
 
   <!-- 海报 banner -->
   <view class='banner' indicator-dots='true' autoplay='true'>
-    <block>
-    <swiper-item >
-    
+    <block wx:for="{{bannerList}}" wx:for-item="bannerItem" wx:for-index="bannerIndex" wx:key="banner">
+      <swiper-item>
 
-    </swiper-item>
+
+      </swiper-item>
 
     </block>
   </view>
