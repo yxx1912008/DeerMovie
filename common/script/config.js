@@ -4,7 +4,7 @@
  */
 
 //此处填写我的个人服务器地址，用来存放远程资源
-var url = 'https://static.sesine.com/wechat-weapp-movie'
+var url = 'https://wx.luckydeer.cn/static/'
 
 module.exports = {
 
@@ -41,18 +41,18 @@ module.exports = {
   ],
   // “我的”页面背景列表
   skinList: [
-    { title: '公路', imgUrl: url + '/images/user_bg_1.jpg' },
-    { title: '黑夜森林', imgUrl: url + '/images/user_bg_2.jpg' },
-    { title: '鱼与水', imgUrl: url + '/images/user_bg_3.jpg' },
-    { title: '山之剪影', imgUrl: url + '/images/user_bg_4.jpg' },
-    { title: '火山', imgUrl: url + '/images/user_bg_5.jpg' },
-    { title: '科技', imgUrl: url + '/images/user_bg_6.jpg' },
-    { title: '沙漠', imgUrl: url + '/images/user_bg_7.jpg' },
-    { title: '叶子', imgUrl: url + '/images/user_bg_8.jpg' },
-    { title: '早餐', imgUrl: url + '/images/user_bg_9.jpg' },
-    { title: '英伦骑车', imgUrl: url + '/images/user_bg_10.jpg' },
-    { title: '草原', imgUrl: url + '/images/user_bg_11.jpg' },
-    { title: '城市', imgUrl: url + '/images/user_bg_12.jpg' }
+    { title: '公路', imgUrl: url + '/images/bg_img_movie/user_bg_1.jpg' },
+    { title: '黑夜森林', imgUrl: url + '/images/bg_img_movie/user_bg_2.jpg' },
+    { title: '鱼与水', imgUrl: url + '/images/bg_img_movie/user_bg_3.jpg' },
+    { title: '山之剪影', imgUrl: url + '/images/bg_img_movie/user_bg_4.jpg' },
+    { title: '火山', imgUrl: url + '/images/bg_img_movie/user_bg_5.jpg' },
+    { title: '科技', imgUrl: url + '/images/bg_img_movie/user_bg_6.jpg' },
+    { title: '沙漠', imgUrl: url + '/images/bg_img_movie/user_bg_7.jpg' },
+    { title: '叶子', imgUrl: url + '/images/bg_img_movie/user_bg_8.jpg' },
+    { title: '早餐', imgUrl: url + '/images/bg_img_movie/user_bg_9.jpg' },
+    { title: '英伦骑车', imgUrl: url + '/images/bg_img_movie/user_bg_10.jpg' },
+    { title: '草原', imgUrl: url + '/images/bg_img_movie/user_bg_11.jpg' },
+    { title: '城市', imgUrl: url + '/images/bg_img_movie/user_bg_12.jpg' }
   ],
   // 摇一摇音效地址（带url表示远程地址）
   shakeSound: {

@@ -10,6 +10,10 @@
   <!-- 海报 banner -->
   <view class='banner' indicator-dots='true' autoplay='true'>
     <block>
+    <swiper-item >
+    
+
+    </swiper-item>
 
     </block>
   </view>
