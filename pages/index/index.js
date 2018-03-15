@@ -6,15 +6,10 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     bannerList: config.bannerList,
   },
   //事件处理函数
   bindViewTap: function () {
-
     wx.login({
       success: function (loginCode) {
         //appId
@@ -43,7 +38,6 @@ Page({
     // })
   },
   onLoad: function () {
-    console.log(this.data.bannerList);
     //1.显示导航条加载动画
     wx.showNavigationBarLoading();
     //判断，如果不为空

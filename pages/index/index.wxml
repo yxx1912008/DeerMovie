@@ -8,25 +8,12 @@
   </view>
 
   <!-- 海报 banner -->
-  <view class='banner' indicator-dots='true' autoplay='true'>
+<swiper class="banner" indicator-dots="true" autoplay="true">
     <block wx:for="{{bannerList}}" wx:for-item="bannerItem" wx:for-index="bannerIndex" wx:key="banner">
-      <swiper-item >
-<image src='{{bannerItem.imgUrl}}' style='width:750rpx;height:250rpx'></image>
-      </swiper-item>
+        <swiper-item data-type="{{bannerItem.type}}" data-id="{{bannerItem.id}}" bindtap="viewBannerDetail">
+            <image src="{{bannerItem.imgUrl}}" class="banner-item"></image>
+        </swiper-item>
     </block>
-  </view>
+</swiper>
 
-
-
-
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
 </view>
