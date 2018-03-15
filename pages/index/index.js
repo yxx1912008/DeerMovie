@@ -1,5 +1,4 @@
-//导入配置
-var config = require('../../common/script/config')
+var config = require('../../common/script/config.js')
 
 //index.js
 //获取应用实例
@@ -13,7 +12,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     //banner列表，读取配置文件
-    bannerList=config.bannerList
+    bannerList=config.bannerList,
 
   },
   //事件处理函数
