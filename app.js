@@ -1,7 +1,4 @@
-
-// 导入设置文件
-var config = require('common/script/config');
-//app.js
+var config=require('common/script/config');
 App({
   onLaunch: function () {
     // 登录

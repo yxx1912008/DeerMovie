@@ -1,4 +1,4 @@
-var config = require('../../common/script/config.js')
+var config = require('../../common/script/config');
 
 //index.js
 //获取应用实例
@@ -10,10 +10,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
-    //banner列表，读取配置文件
-    bannerList=config.bannerList,
-
+    bannerList: config.bannerList,
   },
   //事件处理函数
   bindViewTap: function () {
@@ -46,6 +43,7 @@ Page({
     // })
   },
   onLoad: function () {
+    console.log(this.data.bannerList);
     //1.显示导航条加载动画
     wx.showNavigationBarLoading();
     //判断，如果不为空
