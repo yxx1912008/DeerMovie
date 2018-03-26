@@ -2,7 +2,7 @@
  * 初始化默认配置
  * 2018年3月13日09:35:22
  */
-var url = 'https://wx.luckydeer.cn/static/'
+var url = 'https://wx.luckydeer.cn/static'
 
 module.exports = {
 

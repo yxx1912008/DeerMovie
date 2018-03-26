@@ -1,10 +1,25 @@
-var config=require('common/script/config');
+var config = require('common/script/config');
 App({
+  // 全局变量数据
+  globalData: {
+    userInfo: null
+  },
   onLaunch: function () {
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res.code);
+        wx.request({
+          url: 'http://127.0.0.1/member/',
+          data: {
+            code: res.code
+          },
+          success: function (data) {
+            console.log(data);
+
+          }
+        })
       }
     })
     // 获取用户信息
@@ -28,10 +43,7 @@ App({
       }
     })
   },
-  // 全局数据
-  globalData: {
-    userInfo: null
-  },
+
   //方法：初始化缓存
   initStorage: function () {
 

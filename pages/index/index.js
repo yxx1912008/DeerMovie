@@ -29,10 +29,6 @@ Page({
         })
       }
     })
-
-
-
-
     // wx.navigateTo({
     //   url: '../logs/logs'
     // })
