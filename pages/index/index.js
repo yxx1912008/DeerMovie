@@ -2,36 +2,14 @@ var config = require('../../common/script/config');
 
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {
     bannerList: config.bannerList,
-  },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.login({
-      success: function (loginCode) {
-        //appId
-        var appId = 'wx0e2c2edbd333214b';
-        //secert
-        var secert = '7a9329971652ad1434436e8a1d32a312';
-        console.log(loginCode.code);
-        wx.request({
-          url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + secert + '&js_code=' + loginCode.code + '&grant_type=authorization_code',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            //成功获取返回的open id 
-            console.log(res);
-          }
-        })
-      }
-    })
-    // wx.navigateTo({
-    //   url: '../logs/logs'
-    // })
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
   onLoad: function () {
     //1.显示导航条加载动画
@@ -47,10 +25,12 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        console.log(res.userInfo);
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
+        });
+        wx.login({
+          
         })
       }
     } else {
@@ -67,7 +47,6 @@ Page({
     }
   },
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
