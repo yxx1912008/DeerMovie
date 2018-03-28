@@ -21,7 +21,7 @@ module.exports = {
     },
     filmDetail: 'https://api.douban.com/v2/movie/subject/',
     personDetail: 'https://api.douban.com/v2/movie/celebrity/',
-    baiduMap: 'https://api.map.baidu.com/geocoder/v2/'
+    baiduMap: 'http://127.0.0.1/member/location/getUserCity'
   },
   hotKeyword: ['功夫熊猫', '烈日灼心', '摆渡人', '长城', '我不是潘金莲', '这个杀手不太冷', '驴得水', '海贼王之黄金城', '西游伏妖片', '我在故宫修文物', '你的名字'],
   hotTag: ['动作', '喜剧', '爱情', '悬疑'],

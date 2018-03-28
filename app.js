@@ -2,18 +2,26 @@ var config = require('common/script/config');
 App({
   onLaunch: function () {
     this.getUserInfo();
+    this.initStorage();
+    wx.getStorage({
+      key: 'person_info',
+      success: function (res) {
+        console.log(res);
+      },
+    });
+
   },
   // 全局数据
   globalData: {
-    userInfo: null
+    userInfo: null,
+    person_info: null
   },
   //获取用户信息
-  getUserInfo: function (cb) {
+  getUserInfo: function () {
     var that = this;
     wx.getUserInfo({
       success: function (res) {
         that.globalData.userInfo = res.userInfo;
-        console.log(that.globalData.userInfo);
         wx.login({
           success: function (e) {
             wx.request({
@@ -26,10 +34,17 @@ App({
               },
               success: function (json) {
                 if (null != json.data.id && json.data.result == '1') {
+                  //用户默认信息
+                  var person_info = {
+                    nickName: '',
+                    avatarURL: '',
+                    id: '',
+                    updateTime: ''
+                  }
                   //保存用户服务器返回的Id
                   wx.setStorage({
-                    key: 'person_id',
-                    data: json.data.id,
+                    key: 'person_info',
+                    data: person_info,
                   });
                 }
               }
@@ -39,14 +54,30 @@ App({
       }
     })
   },
+  //获取当前地理位置信息
+  getCity: function () {
+
+  },
+
   //方法：初始化缓存
   initStorage: function () {
     wx.getStorageInfo({
       success: function (res) {
-        //判断用户ID是否存在
-        if (!('person_id' in res.keys)) {
+
+        //用户默认信息
+        var person_info = {
+          nickName: '',
+          avatarURL: '',
+          id: '',
+          updateTime: ''
+        }
+
+
+
+        //判断用户Info是否存在
+        if (!('person_info' in res.keys)) {
           wx.setStorage({
-            key: 'person_id',
+            key: 'person_info',
             data: '',
           });
         }
