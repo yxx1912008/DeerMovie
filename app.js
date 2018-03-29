@@ -3,32 +3,56 @@ App({
   onLaunch: function () {
     var that = this;
     this.initStorage();
+    var value = wx.getStorageSync('personInfo');
+    console.log(value);
+    if (value.id != null || value.updateTime != null) {
+      var time = new Date();
+      var timeLag = (time - new Date(value.updateTime)) / 1000;
+      console.log('last updateTime is:' + value.updateTime);
+      console.log('The time is :' + timeLag);
+      if (timeLag < 120) {
+        return;
+      }
+    }
+    console.log('time out or value is null');
+    this.getUserInfo();
+
+    // wx.getStorage({
+    //   key: 'person_info',
+    //   success: function (res) {
+    //     console.log(res);
+    //     if (res.data.id != null && res.data.updateTime != null) {
+    //       console.log('id and updateTime read ok');
+    //       var time = new Date();
+    //       var timeLag = (time - new Date(res.data.updateTime)) / 1000;
+    //       console.log('last updateTime is:' + res.data.updateTime);
+    //       console.log('The time is :' + timeLag);
+    //       if (timeLag < 120) {
+    //         return;
+    //       }
+    //     }
+    //     console.log('查询用户信息');
+    //     that.getUserInfo();
+    //     wx.getStorageInfo({
+    //       success: function (res) {
+    //         console.log(res);
+    //       },
+    //     })
+    //   },
+    //   fail: function () {
+    //     console.log('fail');
+    //     that.getUserInfo();
+    //   }
+    // });
     wx.getStorage({
-      key: 'person_info',
+      key: 'giftWord',
       success: function (res) {
         console.log(res);
-        if (res.data.id != null && res.data.updateTime != null) {
-          console.log('id and updateTime read ok');
-          var time = new Date();
-          var timeLag = (time - new Date(res.data.updateTime)) / 1000;
-          console.log('last updateTime is:' + res.data.updateTime);
-          console.log('The time is :' + timeLag);
-          if (timeLag < 120) {
-            return;
-          }
+        if (res.data === null) {
+          that.getGiftWord;
         }
-        console.log('查询用户信息');
-        that.getUserInfo();
-        wx.getStorageInfo({
-          success: function (res) {
-            console.log(res);
-          },
-        })
       },
-      fail: function () {
-        console.log('查询失败');
-      }
-    });
+    })
 
   },
   // 全局数据
@@ -57,17 +81,17 @@ App({
               success: function (json) {
                 if (null != json.data.id && json.data.result == '1') {
                   //用户默认信息
-                  var person_info = {
+                  var personInfo = {
                     nickName: nickName,
                     avatarURL: avatarUrl,
                     id: json.data.id,
                     updateTime: new Date()
                   }
+                  console.log(personInfo);
                   //保存用户服务器返回的Id
-                  wx.setStorage({
-                    key: 'person_info',
-                    data: person_info,
-                  });
+                  wx.setStorageSync('personInfo', personInfo);
+                  console.log('personInfo is to save');
+                  var value = wx.getStorageSync('personInfo');
                 }
               }
             });
@@ -75,17 +99,26 @@ App({
         });
       },
       fail: function (e) {
-        console.log(e);
-        that.getUserInfo;
+        console.log('get user info fail');
         wx.showNavigationBarLoading();
         wx.setNavigationBarTitle({
-          title: '正在加载用户信息',
+          title: '正在获取用户信息',
         })
       }
     })
   },
   //获取当前地理位置信息
   getCity: function () {
+
+  },
+  //获取红包
+  getGiftWord: function () {
+    wx.request({
+      url: 'http://127.0.0.1/member/getGiftWordByAli',
+      success: function (json) {
+        console.log(json);
+      }
+    })
 
   },
 
@@ -111,17 +144,30 @@ App({
     // });
 
     var res = wx.getStorageInfoSync();
-    console.log(res);
-    console.log();
-    if (res.keys.indexOf('person_info') === -1) {
-      var person_info = {
+    if (res.keys.indexOf('personInfo') === -1) {
+      var personInfo = {
         nickName: null,
         avatarURL: null,
         id: null,
         updateTime: null
       }
       //如果不存在缓存,新建缓存文件
-      wx.setStorageSync('person_info', person_info);
+      wx.setStorageSync('personInfo', personInfo);
+      console.log('stronge is update.');
     }
+    console.log('stronge is ok');
+    wx.getStorageInfo({
+      success: function (res) {
+        if (res.keys.indexOf('giftWord') === -1) {
+          console.log('giftWord log is null ,build');
+          wx.setStorage({
+            key: 'giftWord',
+            data: '',
+          })
+        }
+      },
+    })
+
+
   },
 })
