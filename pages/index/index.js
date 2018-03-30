@@ -12,6 +12,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
   onLoad: function () {
+    var word = 'z吱吱吱';
+    wx.setClipboardData({
+      data: word,
+    })
     //1.显示导航条加载动画
     wx.showNavigationBarLoading();
     //判断，如果不为空
@@ -30,7 +34,7 @@ Page({
           hasUserInfo: true
         });
         wx.login({
-          
+
         })
       }
     } else {

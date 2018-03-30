@@ -1,0 +1,10 @@
+<view class='body'>
+  <view class='userInfo'>
+    <view wx:if="{{!hasUserInfo}}" class='defaultInfo'>
+      <view class='defaultIcon'></view>
+      <view class='defaultTitle'>
+        登陆
+      </view>
+    </view>
+  </view>
+</view>
