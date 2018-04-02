@@ -6,10 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {},
     LoginTitle: '登陆',
-    hasUserInfo: false
-
+    hasUserInfo: false,
+    isClick: false,
   },
 
   /**
@@ -17,58 +17,22 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarColor({
-      frontColor: '#ffffff',
-      backgroundColor: '#B196FF'
+      frontColor: '#000000',
+      backgroundColor: '#E1EBF4'
     })
-
+    wx.setNavigationBarTitle({
+      title: '登陆',
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getUserInfo: function (e) {
+    this.setData({
+      isClick: true
+    });
+    if (!e.userInfo) {
+      wx.showToast({
+        title: '请允许获取授权',
+        icon: 'loading'
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

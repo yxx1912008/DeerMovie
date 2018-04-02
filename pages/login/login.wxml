@@ -2,9 +2,9 @@
   <view class='userInfo'>
     <view wx:if="{{!hasUserInfo}}" class='defaultInfo'>
       <view class='defaultIcon'></view>
-      <view class='defaultTitle'>
-        登陆
-      </view>
+      <button class="{{isClick?'defaultTitle click':'defaultTitle'}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        登 陆
+      </button>
     </view>
   </view>
 </view>
