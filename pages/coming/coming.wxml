@@ -1,0 +1,7 @@
+<!--pages/coming/coming.wxml-->
+<!-- 消息控件 -->
+<import src="../../common/component/message/message.wxml" />
+<template is="message" data="{{message: message}}" />
+<!-- 电影列表 -->
+<import src="../../common/component/filmList/filmList.wxml" />
+<template is="filmList" data="{{films: films, hasMore: hasMore, showLoading: showLoading}}" />

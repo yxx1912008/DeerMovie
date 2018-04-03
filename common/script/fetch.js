@@ -21,7 +21,7 @@ module.exports = {
         },
         success: res => {
           console.log(res);
-          if (res.data.count === 0) {
+          if (res.data.subjects.length === 0) {
             that.setData({
               hasMore: false
             });

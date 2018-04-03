@@ -1,0 +1,3 @@
+/* pages/coming/coming.wxss */
+@import "../../common/component/message/message.wxss";
+@import "../../common/component/filmList/filmList.wxss";

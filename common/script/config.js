@@ -11,7 +11,7 @@ module.exports = {
     giftWord: 'https://wx.luckydeer.cn/member/getGiftWordByAli',
     login: 'https://wx.luckydeer.cn/member/getUserOpenId',
     popular: 'https://wx.luckydeer.cn/movie/in_theaters',
-    coming: 'https://api.douban.com/v2/movie/coming_soon',
+    coming: 'https://wx.luckydeer.cn/movie/coming_soon',
     top: 'https://api.douban.com/v2/movie/top250',
     search: {
       byKeyword: 'https://api.douban.com/v2/movie/search?q=',

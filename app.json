@@ -2,7 +2,8 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/coming/coming"
   ],
   "window": {
     "navigationBarBackgroundColor": "#47a86c",
@@ -25,7 +26,7 @@
         "text": "热映"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/coming/coming",
         "iconPath": "dist/images/coming_icon.png",
         "selectedIconPath": "dist/images/coming_active_icon.png",
         "text": "待映"

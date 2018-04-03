@@ -37,11 +37,6 @@ Page(Object.assign({}, Zan.TopTips, {
         app.globalData.userInfo = value;
         wx.switchTab({
           url: '../index/index',
-          success: function () {
-            wx.showToast({
-              title: '登陆成功',
-            });
-          }
         })
         return;
       }

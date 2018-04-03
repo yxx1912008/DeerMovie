@@ -35,11 +35,35 @@ Page({
     });
     movieapi.fetchFilms.call(that, config.apiList.popular, this.data.start);
   },
+  //下拉事件
+  onPullDownRefresh: function () {
+    var that = this
+    that.setData({
+      films: [],
+      hasMore: true,
+      showLoading: true,
+      start: 0
+    })
+    this.onLoad()
+  },
+  //触底事件
+  onReachBottom: function () {
+    var that = this
+    if (!that.data.showLoading) {
+      movieapi.fetchFilms.call(that, config.apiList.popular, that.data.start);
+    }
+  },
 
   // 当搜索框输入回车后触发
   movieSearch: function (e) {
     //待完善
 
+  },
+  viewFilmDetail: res => {
+    console.log(res);
+    wx.showToast({
+      title: '功能正在开发中....',
+    })
   }
 
 })
