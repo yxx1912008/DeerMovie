@@ -25,19 +25,19 @@
         "text": "热映"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/logs/logs",
         "iconPath": "dist/images/coming_icon.png",
         "selectedIconPath": "dist/images/coming_active_icon.png",
         "text": "待映"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/logs/logs",
         "iconPath": "dist/images/top_icon.png",
         "selectedIconPath": "dist/images/top_active_icon.png",
         "text": "口碑"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/logs/logs",
         "iconPath": "dist/images/my_icon.png",
         "selectedIconPath": "dist/images/my_active_icon.png",
         "text": "我的"

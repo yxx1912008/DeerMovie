@@ -8,92 +8,109 @@ App({
     if (giftWord.length == 0) {
       this.getGiftWord();
     }
-    this.getUserInfo();
+    this.getCity();
   },
   // 全局数据
   globalData: {
     userInfo: null,
+    getCityCount: 0
   },
-  //获取用户信息
-  getUserInfo: function () {
-    var that = this;
-    //获取用户信息
-    wx.getSetting({
-      success: res => {
-        console.log(res);
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              console.log(res.userInfo);
-              // 可以将 res 发送给后台解码出 unionId
-              that.globalData.userInfo = res.userInfo
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (that.userInfoReadyCallback) {
-                that.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
-
-
-
-    // wx.getUserInfo({
-    //   success: function (res) {
-    //     that.globalData.userInfo = res.userInfo;
-    //     wx.login({
-    //       success: function (e) {
-    //         var nickName = that.globalData.userInfo.nickName;
-    //         var avatarUrl = that.globalData.userInfo.avatarUrl;
-    //         wx.request({
-    //           method: 'POST',
-    //           url: 'http://127.0.0.1/member/getUserOpenId',
-    //           data: {
-    //             code: e.code,
-    //             nickName: nickName,
-    //             avatarUrl: avatarUrl
-    //           },
-    //           success: function (json) {
-    //             if (null != json.data.id && json.data.result == '1') {
-    //               //用户默认信息
-    //               var personInfo = {
-    //                 nickName: nickName,
-    //                 avatarURL: avatarUrl,
-    //                 id: json.data.id,
-    //                 updateTime: new Date()
-    //               }
-    //               console.log(personInfo);
-    //               //保存用户服务器返回的Id
-    //               wx.setStorageSync('personInfo', personInfo);
-    //               console.log('personInfo is to save');
-    //               var value = wx.getStorageSync('personInfo');
-    //             }
-    //           }
-    //         });
-    //       }
-    //     });
-    //   },
-    //   fail: function (e) {
-    //     console.log('get user info fail');
-    //     wx.showNavigationBarLoading();
-    //     wx.setNavigationBarTitle({
-    //       title: '正在获取用户信息',
-    //     })
-    //   }
-    // });
-  },
+  // //获取用户信息
+  // getUserInfo: function () {
+  //   var that = this;
+  //   //获取用户信息
+  //   wx.getSetting({
+  //     success: res => {
+  //       console.log(res);
+  //       if (res.authSetting['scope.userInfo']) {
+  //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+  //         wx.getUserInfo({
+  //           success: res => {
+  //             console.log(res.userInfo);
+  //             // 可以将 res 发送给后台解码出 unionId
+  //             that.globalData.userInfo = res.userInfo
+  //             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+  //             // 所以此处加入 callback 以防止这种情况
+  //             if (that.userInfoReadyCallback) {
+  //               that.userInfoReadyCallback(res)
+  //             }
+  //           }
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
   //获取当前地理位置信息
   getCity: function () {
+    var that = this;
+    wx.getLocation({
+      type: 'gcj02',
+      success: res => {
+        console.log(res);
+        var locationParam = res.latitude + ',' + res.longitude;
+        wx.request({
+          url: config.apiList.baiduMap,
+          data: {
+            location: locationParam,
+          }, success: res => {
+            if (res.data.result != 1) {
+              that.getCity();
+            }
+            config.city = res.data.city;
+            console.log('当前地理位置:');
+            console.log(config.city);
+            return true;
+          }, fail: function () {
+            that.getCity();
+          }
+        });
+      },
+      fail: e => {
+        wx.getSetting({
+          success: res => {
+            //获取授权失败
+            if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+              wx.showModal({
+                title: '是否授权当前位置',
+                content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                success: res => {
+                  if (res.cancel) {
+                    that.globalData.getCityCount += 1;
+                    console.log(that.globalData.getCityCount);
+                    if (that.globalData.getCityCount > 2) {
+                      return false;
+                    }
+                    that.getCity();
+                  }
+                  if (res.confirm) {
+                    wx.openSetting({
+                      success: res => {
+                        console.log(res);
+                        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+                          wx.showToast({
+                            title: '获取授权失败',
+                          });
+                        }
+                        that.getCity();
+                        return;
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          }
+        });
+      }
+
+    })
 
   },
   //获取红包
   getGiftWord: function () {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/member/getGiftWordByAli',
+      url: config.apiList.giftWord,
       success: function (json) {
         var arry = [];
         arry.push(json.data.giftWord);
@@ -114,7 +131,8 @@ App({
         nickName: '',
         avatarURL: '',
         id: '',
-        updateTime: ''
+        updateTime: null,
+        token: '',
       }
       wx.setStorageSync('userInfo', userInfo);
     }

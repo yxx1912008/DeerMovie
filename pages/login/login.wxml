@@ -1,10 +1,13 @@
+<import src="../../dist/zan-ui/toptips/index.wxml" />
 <view class='body'>
   <view class='userInfo'>
+    <template is="zan-toptips" data="{{ zanTopTips }}"></template>
     <view wx:if="{{!hasUserInfo}}" class='defaultInfo'>
       <view class='defaultIcon'></view>
-      <button class="{{isClick?'defaultTitle click':'defaultTitle'}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <button class="{{isClick?'defaultTitle click':'defaultTitle'}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" >
         登 陆
       </button>
     </view>
   </view>
+
 </view>

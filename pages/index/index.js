@@ -12,7 +12,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
   onLoad: function () {
-    var word = 'z吱吱吱';
+    var value = wx.getStorageSync('giftWord');
+    var word = value[0];
     wx.setClipboardData({
       data: word,
     })

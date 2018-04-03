@@ -5,13 +5,11 @@
 var url = 'https://wx.luckydeer.cn/static'
 
 module.exports = {
-
-  city: '',
-
+  city: '北京',
   counts: 20,
-
-  baiduAK: 'aFoSl8fK5CxCeXn6oCUb4o1itGfG9ale',
   apiList: {
+    giftWord: 'http://127.0.0.1/member/getGiftWordByAli',
+    login: 'http://127.0.0.1/member/getUserOpenId',
     popular: 'https://api.douban.com/v2/movie/in_theaters',
     coming: 'https://api.douban.com/v2/movie/coming_soon',
     top: 'https://api.douban.com/v2/movie/top250',
