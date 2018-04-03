@@ -33,8 +33,7 @@ Page({
         title: '正在热映---' + config.city,
       })
     });
-
-    movieapi.fetchFilms.call();
+    movieapi.fetchFilms.call(that, config.apiList.popular, this.data.start);
   },
 
   // 当搜索框输入回车后触发

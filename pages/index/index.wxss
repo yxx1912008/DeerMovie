@@ -1,4 +1,6 @@
 /* 开始 */
+@import "../../common/component/message/message.wxss";
+@import "../../common/component/filmList/filmList.wxss";
 
 /* 搜索框 */
 

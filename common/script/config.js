@@ -10,7 +10,7 @@ module.exports = {
   apiList: {
     giftWord: 'http://127.0.0.1/member/getGiftWordByAli',
     login: 'http://127.0.0.1/member/getUserOpenId',
-    popular: 'https://api.douban.com/v2/movie/in_theaters',
+    popular: 'http://127.0.0.1/movie/in_theaters',
     coming: 'https://api.douban.com/v2/movie/coming_soon',
     top: 'https://api.douban.com/v2/movie/top250',
     search: {
