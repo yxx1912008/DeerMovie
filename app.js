@@ -8,12 +8,12 @@ App({
     if (giftWord.length == 0) {
       this.getGiftWord();
     }
-    this.getCity();
   },
   // 全局数据
   globalData: {
     userInfo: null,
-    getCityCount: 0
+    getCityCount: 0,
+    hasCity: false
   },
   // //获取用户信息
   // getUserInfo: function () {
@@ -41,7 +41,7 @@ App({
   //   })
   // },
   //获取当前地理位置信息
-  getCity: function () {
+  getCity: function (cb) {
     var that = this;
     wx.getLocation({
       type: 'gcj02',
@@ -59,7 +59,9 @@ App({
             config.city = res.data.city;
             console.log('当前地理位置:');
             console.log(config.city);
-            return true;
+            this.globalData.hasCity = true;
+            typeof cb =='function'&&cb();
+            return;
           }, fail: function () {
             that.getCity();
           }
@@ -78,7 +80,8 @@ App({
                     that.globalData.getCityCount += 1;
                     console.log(that.globalData.getCityCount);
                     if (that.globalData.getCityCount > 2) {
-                      return false;
+                      this.globalData.hasCity = false;
+                      return;
                     }
                     that.getCity();
                   }
@@ -92,7 +95,6 @@ App({
                           });
                         }
                         that.getCity();
-                        return;
                       }
                     })
                   }
@@ -102,9 +104,8 @@ App({
           }
         });
       }
-
-    })
-
+    });
+    return this.globalData.hasCity;
   },
   //获取红包
   getGiftWord: function () {
