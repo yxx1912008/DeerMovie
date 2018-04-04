@@ -60,10 +60,10 @@ Page({
 
   },
   viewFilmDetail: res => {
-    console.log(res);
-    wx.showToast({
-      title: '功能正在开发中....',
-    })
+    var targetId = res.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "../filmDetail/filmDetail?id=" + targetId,
+    });
   }
 
 })

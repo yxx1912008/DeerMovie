@@ -1,0 +1,44 @@
+/* pages/filmDetail/filmDetail.wxss */
+
+/* 开始 */
+@import "../../common/component/message/message.wxss";
+@import "../../common/component/filmList/filmList.wxss";
+
+/* 电影详情 */
+
+.film-detail {
+  position: relative;
+  width: 100%;
+  height: 600rpx;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+}
+
+.film-detail::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 600rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 海报 */
+
+.film-detail-background-img {
+  position: absolute;
+  z-index: -2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 600rpx;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30rpx);
+  transform: scale(1.2);
+}

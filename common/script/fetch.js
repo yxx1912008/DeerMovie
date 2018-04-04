@@ -52,6 +52,44 @@ module.exports = {
         }
       })
     }
+  },
+  //获取指定电影详情
+  fetchFilmDetail: function (url, id, cb) {
+    console.log('---正在获取电影详情----');
+    var that = this;
+    message.hide.call(that);
+    wx.request({
+      url: url + id,
+      header: {
+        "Content-Type": "application/json,application/json"
+      },
+      success: res => {
+        console.log(res);
+        that.setData({
+          filmDetail: res.data,
+          showLoading: false,
+          showContent: true
+        });
+        wx.setNavigationBarTitle({
+          title: res.data.title,
+        });
+        wx.stopPullDownRefresh();
+        typeof cb == 'function' && cb(res.data);
+      },
+      fail: function () {
+        that.setData({
+          showLoading: false
+        });
+        message.show.call(that, {
+          content: '网络开小差了',
+          icon: 'offline',
+          duration: 3000
+        })
+      }
+
+    })
+
 
   }
+
 }

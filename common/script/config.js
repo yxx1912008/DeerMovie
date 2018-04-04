@@ -12,12 +12,12 @@ module.exports = {
     login: 'https://wx.luckydeer.cn/member/getUserOpenId',
     popular: 'https://wx.luckydeer.cn/movie/in_theaters',
     coming: 'https://wx.luckydeer.cn/movie/coming_soon',
-    top: 'https://api.douban.com/v2/movie/top250',
+    top: 'https://wx.luckydeer.cn/movie/top250',
     search: {
       byKeyword: 'https://api.douban.com/v2/movie/search?q=',
       byTag: 'https://api.douban.com/v2/movie/search?tag='
     },
-    filmDetail: 'https://api.douban.com/v2/movie/subject/',
+    filmDetail: 'http://127.0.0.1/movie/subject/',
     personDetail: 'https://api.douban.com/v2/movie/celebrity/',
     baiduMap: 'http://127.0.0.1/member/location/getUserCity'
   },

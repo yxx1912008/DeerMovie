@@ -1,0 +1,17 @@
+<!--电影详情-->
+<view class='body'>
+  <!-- 加载文案 -->
+  <block wx:if="{{showLoading}}">
+    <view class='loading'>
+      玩命加载中…
+    </view>
+  </block>
+  <!-- 电影详情 -->
+  <block wx:elif="{{showContent}}">
+    <view class='film-detail'>
+      <!-- 背景 -->
+      <view class='film-detail-background-img' style='background-image: url({{filmDetail.images.large}})'>
+      </view>
+    </view>
+  </block>
+</view>
